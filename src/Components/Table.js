@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react'
 
 const Table = () => {
-    const [items, setItems] = useState([{}])
+    const [items, setItems] = useState([{}]);
+    const [search, setSearch] = useState('');
+    const [filteredResults, setFilteredResults] = useState([]);
     let limit = 10;
     const getData = async () => {
         const res = await fetch(`https://jsonplaceholder.typicode.com/users?_limit=${limit}`);
@@ -51,6 +53,18 @@ const Table = () => {
             })
 
     }
+    const searchItems = (searchValue) => {
+        setSearch(searchValue)
+        if (search !== '') {
+            const filteredData = items.filter((item) => {
+                return Object.values(item).join('').toLowerCase().includes(search.toLowerCase())
+            })
+            setFilteredResults(filteredData)
+        }
+        else {
+            setFilteredResults(items)
+        }
+    }
     return (
         <>
             <div className="header">
@@ -70,7 +84,7 @@ const Table = () => {
                         <div className="search">
                             <div className="childSearch">
                                 <p className='find'>Find</p>
-                                <input type="text" />
+                                <input type="text" onChange={(e) => searchItems(e.target.value)} />
                             </div>
                             <button className='delete'>Delete</button>
                         </div>
@@ -84,7 +98,29 @@ const Table = () => {
 
                                 </tr>
                             </thead>
-                            {
+                            {search.length > 1 ? (
+                                filteredResults.map((curElem, i) => {
+                                    const { id, name, email } = curElem;
+                                    return (
+                                        <tbody key={id}>
+                                            <tr>
+                                                <th scope="row">
+                                                    {
+                                                        id
+                                                    }
+                                                </th>
+                                                <td>
+                                                    {name}
+                                                </td>
+                                                <td>{email}</td>
+
+                                            </tr>
+
+                                        </tbody>
+
+                                    )
+                                })
+                            ) : (
                                 items && items.map((curElem, i) => {
                                     const { id, name, email } = curElem;
                                     return (
@@ -105,9 +141,9 @@ const Table = () => {
                                         </tbody>
 
                                     )
-
                                 })
-                            }
+
+                            )}
                         </table>
                     </div>
                     <div className="col-lg-5 col-md-12">
