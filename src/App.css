@@ -1,38 +1,159 @@
-.App {
-  text-align: center;
+@import url('https://fonts.googleapis.com/css2?family=Comic+Neue:ital,wght@0,700;1,400&family=Fredoka+One&family=Inter:wght@500;600&family=Open+Sans:wght@600&family=Roboto:wght@500;700&family=Rubik:wght@400;500;600;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Rubik', sans-serif;
+
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.navbar-brand {
+  color: #fff;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.navbar {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
+
+
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+
+}
+
+.landing {
+  background: #001C2E repeat;
+  height: 100vh;
+  display: flex;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
+  color: #fff;
 }
 
-.App-link {
-  color: #61dafb;
+.landingPara {
+  font-size: 1.3rem;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.landingBtn {
+  padding: 1rem;
+  border: 1px solid #000;
+  border-radius: 0.4rem;
+  outline: none;
+  background: #30336b;
+  color: #fff;
+  transition: all 0.5s;
+}
+
+.landingBtn:hover {
+  background: #22a6b3;
+}
+
+.header {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  border-bottom: 2px solid #2ecc71;
+  width: 100%;
+}
+
+.modal-header {
+  background: #2ecc71;
+}
+
+.tableBtn {
+  padding: 0.5rem;
+  background: #2ecc71;
+  color: #fff;
+  border-right: #2ecc71;
+  border: none;
+  outline: none;
+}
+
+.tableData {
+  background: #ecf0f1;
+  width: 100%;
+}
+
+.modal-body {
+  padding: 0 !important;
+}
+
+.tableHead {
+  color: #2ecc71;
+  padding: 1rem 0;
+}
+
+.delete {
+  background: #bdc3c7;
+  padding: 0.5rem;
+  border: #7f8c8d;
+  border-radius: 4px;
+}
+
+.search {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.childSearch {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30%;
+}
+
+.find {
+  margin-bottom: 0 !important;
+  padding: 1rem;
+}
+
+td,
+th {
+  border: 1px solid #000;
+
+}
+
+thead {
+  background: #2ecc71;
+}
+
+thead tr th {
+  color: #fff;
+}
+
+tbody {
+  background: #fff;
+}
+
+.formPart {
+  width: 100%;
+  margin: 1rem 0;
+}
+
+.formLabel {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.addBtn {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.addChildBtn {
+  background: #bdc3c7;
+  padding: 0.5rem;
+  border: #7f8c8d;
+  border-radius: 4px;
+
 }
