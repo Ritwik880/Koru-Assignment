@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from 'react'
 
 const Table = () => {
-    const [name, setName] = useState('');
-    const [desc, setDesc] = useState('');
-    const [items, setItems] = useState([])
+    const [items, setItems] = useState([{}])
     let limit = 10;
     const getData = async () => {
-        const res = await fetch(`https://jsonplaceholder.typicode.com/posts?_page=1&_limit=${limit}`);
+        const res = await fetch(`https://jsonplaceholder.typicode.com/users?_limit=${limit}`);
         const data = await res.json();
         const total = res.headers.get("x-total-count");
         console.log(data);
@@ -21,8 +19,37 @@ const Table = () => {
 
     const submitForm = (e) => {
         e.preventDefault();
-        const newEntry = [{ name: name, desc: desc }];
-        setItems(newEntry)
+        addData(e.target.name.value, e.target.email.value);
+        e.target.name.value = "";
+        e.target.email.value = "";
+
+    }
+    const addData = async (name, email) => {
+        await fetch('https://jsonplaceholder.typicode.com/users', {
+            method: 'POST',
+            body: JSON.stringify({
+                name: name,
+                email: email
+            }),
+            headers: {
+                "Content-type": "application/json; charset=UTF-8",
+            }
+        })
+            .then((res) => {
+                if (res.status !== 201) {
+                    return
+                } else {
+                    return res.json()
+                }
+            })
+            .then((data) => {
+                alert('Data stored successfully')
+                setItems((items) => [...items, data])
+            })
+            .catch((err) => {
+                console.log(err);
+            })
+
     }
     return (
         <>
@@ -53,13 +80,13 @@ const Table = () => {
                                 <tr>
                                     <th scope="col">id</th>
                                     <th scope="col">Name</th>
-                                    <th scope="col">Description</th>
+                                    <th scope="col">Email</th>
 
                                 </tr>
                             </thead>
                             {
                                 items && items.map((curElem, i) => {
-                                    const { id, title, body } = curElem;
+                                    const { id, name, email } = curElem;
                                     return (
                                         <tbody key={id}>
                                             <tr>
@@ -69,9 +96,9 @@ const Table = () => {
                                                     }
                                                 </th>
                                                 <td>
-                                                    {title.slice(0, 10)}
+                                                    {name}
                                                 </td>
-                                                <td>{body.slice(0, 10)}</td>
+                                                <td>{email}</td>
 
                                             </tr>
 
@@ -88,14 +115,14 @@ const Table = () => {
                             <form action="#" onSubmit={submitForm}>
                                 <div className="mb-3 formLabel">
                                     <label htmlFor="exampleFormControlInput1" className="form-label">Name</label>
-                                    <input value={name} onChange={(e) => setName(e.target.value)} type="text" className="form-control" id="exampleFormControlInput1" name="first" autoComplete='off' required />
+                                    <input type="text" className="form-control" id="exampleFormControlInput1" name="name" autoComplete='off' required />
                                 </div>
                                 <div className="mb-3 formLabel">
-                                    <label htmlFor="exampleFormControlInput1" className="form-label">Description</label>
-                                    <input value={desc} onChange={(e) => setDesc(e.target.value)} type="text" className="form-control" id="exampleFormControlInput1" name="desc" autoComplete='off' required />
+                                    <label htmlFor="exampleFormControlInput1" className="form-label">Email</label>
+                                    <input type="text" className="form-control" id="exampleFormControlInput1" name="email" autoComplete='off' required />
                                 </div>
                                 <div className="addBtn">
-                                    <button className='addChildBtn' type='submit'>Add</button>
+                                    <button className='addChildBtn' onSubmit={submitForm}>Add</button>
                                 </div>
                             </form>
                         </div>
