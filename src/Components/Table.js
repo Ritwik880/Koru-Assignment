@@ -22,7 +22,7 @@ const Table = () => {
     }
     useEffect(() => {
         getData()
-    }, [])
+    }, [limit])
 
 
     // form onSubmit function

@@ -8,7 +8,7 @@ const Header = () => {
             <nav className="navbar bg-dark">
                 <div className="container">
                     <div className="nav">
-                        <a className="navbar-brand" href="#">iData</a>
+                        <a className="navbar-brand">iData</a>
                         <div className="right">
                             <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                 Click here
