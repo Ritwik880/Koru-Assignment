@@ -59,21 +59,49 @@
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  border-bottom: 2px solid #2ecc71;
+  border-bottom: 3px solid #2ecc71;
   width: 100%;
+  margin-top: 2rem;
+  padding-right: 1rem;
 }
 
 .modal-header {
   background: #2ecc71;
 }
 
-.tableBtn {
-  padding: 0.5rem;
-  background: #2ecc71;
+.modal-title {
   color: #fff;
-  border-right: #2ecc71;
+}
+
+#firstBtn {
+  padding: 0.5rem;
+  background: transparent;
+  color: #2ecc71;
   border: none;
   outline: none;
+  border-top: 3px solid #2ecc71;
+  border-left: 3px solid #2ecc71;
+  border-top-left-radius: 5px;
+
+}
+
+.tableBtn {
+  padding: 0.6rem;
+  background: #2ecc71;
+  color: #fff;
+  border: none;
+  outline: none;
+  margin: 0 1.5px;
+}
+
+#lastBtn {
+  padding: 0.6rem;
+  background: #2ecc71;
+  color: #fff;
+  border: none;
+  outline: none;
+  border-top-right-radius: 5px;
+  margin: 0 1.5px;
 }
 
 .tableData {
@@ -95,6 +123,11 @@
   padding: 0.5rem;
   border: #7f8c8d;
   border-radius: 4px;
+}
+
+.deleteRow {
+  background: transparent;
+  border: none;
 }
 
 .search {
@@ -135,7 +168,9 @@ tbody {
 
 .formPart {
   width: 100%;
-  margin: 1rem 0;
+  border-left: 1px solid #7f8c8d;
+  height: 100%;
+  padding: 1rem;
 }
 
 .formLabel {
@@ -152,8 +187,32 @@ tbody {
 
 .addChildBtn {
   background: #bdc3c7;
-  padding: 0.5rem;
+  padding: 0.4rem 1.5rem;
   border: #7f8c8d;
   border-radius: 4px;
 
+}
+
+.inputBox {
+  width: 72%;
+}
+
+.pagination {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 44%;
+}
+
+.btns {
+  border: none;
+  outline: none;
+  padding-bottom: 1rem;
+  padding-left: 0.4rem;
+}
+
+.errorMessage {
+  color: red;
+  text-align: center;
+  padding: 1rem 0;
 }
