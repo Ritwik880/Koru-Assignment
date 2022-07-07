@@ -23,3 +23,4 @@ In the project directory, If you are using npm then you can do this:
 
 ### `npm start`
 
+The project is built with HTML, CSS, Javascript, React Js, Bootstrap, Json Placeholder. 
