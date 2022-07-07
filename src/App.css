@@ -204,15 +204,97 @@ tbody {
   width: 44%;
 }
 
-.btns {
-  border: none;
+.paginationBtns {
   outline: none;
   padding-bottom: 1rem;
   padding-left: 0.4rem;
+  border: none;
+  background: transparent;
 }
 
 .errorMessage {
   color: red;
   text-align: center;
   padding: 1rem 0;
+}
+
+.footerBtn {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  background: #ecf0f1;
+  width: 100%;
+
+}
+
+.cancelModal {
+  background: #bdc3c7;
+  padding: 0.4rem 1.5rem;
+  border: #7f8c8d;
+  border-radius: 4px;
+
+}
+
+.okModal {
+  background: #2ecc71;
+  padding: 0.4rem 1.5rem;
+  border-radius: 4px;
+  border: none;
+  color: #fff;
+  border: 2px solid #27ae60;
+}
+
+@media (max-width: 450px) {
+  .header {
+    flex-direction: column;
+    align-items: inherit;
+    padding-right: 0;
+  }
+
+}
+
+@media (max-width: 900px) {
+  .landing {
+    padding: 4rem 0;
+    align-items: flex-start;
+    justify-content: center;
+  }
+
+  .img {
+    margin-top: 7rem;
+  }
+
+  .landingImage {
+    width: 100%;
+  }
+
+
+  .header {
+    font-size: 9px;
+  }
+
+  .pagination {
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .formPart {
+    border-left: none;
+
+  }
+
+  .inputBox {
+    width: 81%;
+
+  }
+
+  .childSearch {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .parentDiv {
+    overflow-x: auto;
+  }
+
 }

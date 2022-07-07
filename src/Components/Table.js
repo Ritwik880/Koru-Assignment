@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { BsArrowRight, BsArrowLeft } from 'react-icons/bs';
-import { AiFillDelete } from 'react-icons/ai'
+import { AiFillDelete } from 'react-icons/ai';
+import { Validator } from 'react';
 const Table = () => {
     const [items, setItems] = useState([{}]);
     const [search, setSearch] = useState('');
@@ -86,7 +87,7 @@ const Table = () => {
                 if (res.status !== 200) {
                     return
                 } else {
-                    alert('Are you sure you want to delte')
+                    alert('Are you sure you want to delete')
                     setItems(items.filter((item) => {
                         return item.id !== id;
                     }))
@@ -105,6 +106,14 @@ const Table = () => {
         setItems([]);
         setErrorMessage(true)
 
+    }
+
+    // Pagination 
+    const addPage = () => {
+        alert('No more data to show')
+    }
+    const backPage = () => {
+        alert('No less data to show')
     }
     return (
         <>
@@ -129,86 +138,87 @@ const Table = () => {
                             </div>
                             <button className='delete' onClick={deleteAll}>Delete</button>
                         </div>
+                        <div className='parentDiv'>
+                            <table className="table">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            <button onClick={deleteAll} className='deleteRow'> <AiFillDelete /></button>
+                                        </th>
+                                        <th scope="col">id</th>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">Email</th>
 
-                        <table className="table">
-                            <thead>
-                                <tr>
-                                    <th>
-                                        <button onClick={deleteAll} className='deleteRow'> <AiFillDelete /></button>
-                                    </th>
-                                    <th scope="col">id</th>
-                                    <th scope="col">Name</th>
-                                    <th scope="col">Email</th>
+                                    </tr>
+                                </thead>
+                                {search.length > 1 ? (
+                                    filteredResults.map((curElem) => {
+                                        const { id, name, email } = curElem;
+                                        return (
+                                            <tbody key={id}>
+                                                <tr>
+                                                    <button onClick={() => handleDelete(id)} className='deleteRow'> <AiFillDelete /></button>
+                                                    <th scope="row">
+                                                        {
+                                                            id
+                                                        }
+                                                    </th>
+                                                    <td>
+                                                        {name}
+                                                    </td>
+                                                    <td>{email}</td>
 
-                                </tr>
-                            </thead>
-                            {search.length > 1 ? (
-                                filteredResults.map((curElem) => {
-                                    const { id, name, email } = curElem;
-                                    return (
-                                        <tbody key={id}>
-                                            <tr>
-                                                <button onClick={() => handleDelete(id)} className='deleteRow'> <AiFillDelete /></button>
-                                                <th scope="row">
-                                                    {
-                                                        id
-                                                    }
-                                                </th>
-                                                <td>
-                                                    {name}
-                                                </td>
-                                                <td>{email}</td>
+                                                </tr>
 
-                                            </tr>
+                                            </tbody>
+                                        )
+                                    })
+                                ) : (
+                                    items && items.map((curElem, i) => {
+                                        const { id, name, email } = curElem;
+                                        return (
+                                            <tbody key={id}>
+                                                <tr>
 
-                                        </tbody>
-                                    )
-                                })
-                            ) : (
-                                items && items.map((curElem, i) => {
-                                    const { id, name, email } = curElem;
-                                    return (
-                                        <tbody key={id}>
-                                            <tr>
-
-                                                <button onClick={() => handleDelete(id)} className='deleteRow'> <AiFillDelete /></button>
+                                                    <button onClick={() => handleDelete(id)} className='deleteRow'> <AiFillDelete /></button>
 
 
-                                                <th scope="row">
-                                                    {
-                                                        id
-                                                    }
-                                                </th>
-                                                <td>
-                                                    {name}
-                                                </td>
-                                                <td>{email}</td>
+                                                    <th scope="row">
+                                                        {
+                                                            id
+                                                        }
+                                                    </th>
+                                                    <td>
+                                                        {name}
+                                                    </td>
+                                                    <td>{email}</td>
 
-                                            </tr>
+                                                </tr>
 
-                                        </tbody>
+                                            </tbody>
 
-                                    )
-                                })
+                                        )
+                                    })
 
-                            )}
-                            {
-                                errorMessage ?
-                                    <h4 className='errorMessage'>No Data to show</h4>
-                                    : null
-                            }
+                                )}
+                                {
+                                    errorMessage ?
+                                        <h4 className='errorMessage'>No Data to show</h4>
+                                        : null
+                                }
 
-                        </table>
+                            </table>
+                        </div>
                         <div className="pagination">
                             <p> Total Results: {totalData}</p>
                             <p>Page <span>
                                 {limit}</span> of {totalData}</p>
                             <div className="paginateBtn">
-                                <button className='btns'>
+                                <button className='paginationBtns' onClick={backPage}>
                                     <BsArrowLeft />
 
                                 </button>
-                                <button className='btns'>
+                                <button className='paginationBtns' onClick={addPage}>
 
                                     <BsArrowRight />
 
@@ -225,7 +235,8 @@ const Table = () => {
                                 </div>
                                 <div className="mb-3 formLabel">
                                     <label htmlFor="exampleFormControlInput1" className="form-label">Email</label>
-                                    <input type="text" className="form-control inputBox" id="exampleFormControlInput1" name="email" autoComplete='off' required />
+                                    <input type="text" className="form-control inputBox" id="exampleFormControlInput1" name="email" autoComplete='off' />
+
                                 </div>
                                 <div className="addBtn">
                                     <button className='addChildBtn' onSubmit={submitForm}>Add</button>
